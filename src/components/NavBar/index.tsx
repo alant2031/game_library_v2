@@ -9,7 +9,7 @@ const NavBarComp = () => {
     navigate(path);
   };
   return (
-    <S.Bar>
+    <S.Bar data-testid="nav-bar">
       <S.Item data-testid="home-nav-item" onClick={() => goTo("/")}>
         Home
       </S.Item>

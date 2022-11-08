@@ -1,8 +1,12 @@
 import React from "react";
+import { Jumbotron } from "components";
 
-// TODO: Fazer uma animação para o Jumbotron
 const HomeComp = () => {
-  return <div data-testid="home-page">HomeComp</div>;
+  return (
+    <div data-testid="home-page">
+      <Jumbotron />
+    </div>
+  );
 };
 
 export const Home = React.memo(HomeComp);

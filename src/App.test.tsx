@@ -6,8 +6,11 @@ import renderWithRouter from "utils/tester";
 import { Home, About, Favorites, Game, Games } from "pages";
 import { Stores } from "pages/Stores";
 
-// TODO: test-driven development
 describe("Teste itens de navegação", () => {
+  test("Deve existir NavBar", () => {
+    renderWithRouter(<App />);
+    const navBar = screen.getByTestId("nav-bar");
+  });
   test("Home", () => {
     const { history } = renderWithRouter(<App />);
     const homeTestId = screen.getByTestId("home-page");
@@ -46,4 +49,13 @@ describe("Teste itens de navegação", () => {
     userEvent.click(navItem);
     expect(history.location.pathname).toBe("/about");
   });
+});
+// TODO: Implementar beforeAll para testes da Home
+describe("Home", () => {
+  renderWithRouter(<Home />);
+  // beforeAll
+  test("Deve existir Componente jumbotron", () => {
+    const jumbotron = screen.getByTestId("jumbotron-component");
+  });
+  test("Deve existir input para pesquisa", () => {});
 });
