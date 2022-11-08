@@ -1,10 +1,49 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import App from "./App";
+import renderWithRouter from "utils/tester";
+import { Home, About, Favorites, Game, Games } from "pages";
+import { Stores } from "pages/Stores";
 
 // TODO: test-driven development
-test("renders learn react link", () => {
-  render(<App />);
-  const linkElement = screen.getByText("index");
-  expect(linkElement).toBeInTheDocument();
+describe("Teste itens de navegação", () => {
+  test("Home", () => {
+    const { history } = renderWithRouter(<App />);
+    const homeTestId = screen.getByTestId("home-page");
+    expect(history.location.pathname).toBe("/");
+    expect(homeTestId).toBeInTheDocument();
+  });
+  test("Games", () => {
+    const { history } = renderWithRouter(<App />);
+    const navItem = screen.getByTestId("games-nav-item");
+
+    expect(navItem).toBeInTheDocument();
+    userEvent.click(navItem);
+    expect(history.location.pathname).toBe("/games");
+  });
+  test("Stores", () => {
+    const { history } = renderWithRouter(<App />);
+    const navItem = screen.getByTestId("stores-nav-item");
+
+    expect(navItem).toBeInTheDocument();
+    userEvent.click(navItem);
+    expect(history.location.pathname).toBe("/stores");
+  });
+  test("Favorites", () => {
+    const { history } = renderWithRouter(<App />);
+    const navItem = screen.getByTestId("favorites-nav-item");
+
+    expect(navItem).toBeInTheDocument();
+    userEvent.click(navItem);
+    expect(history.location.pathname).toBe("/favorites");
+  });
+  test("About", () => {
+    const { history } = renderWithRouter(<App />);
+    const navItem = screen.getByTestId("about-nav-item");
+
+    expect(navItem).toBeInTheDocument();
+    userEvent.click(navItem);
+    expect(history.location.pathname).toBe("/about");
+  });
 });
